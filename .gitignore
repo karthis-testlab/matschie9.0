@@ -5,3 +5,4 @@ target/
 test-output/
 allure-results/
 src/test/resources/secret.properties
+reports-html/

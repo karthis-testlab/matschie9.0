@@ -10,8 +10,7 @@ public class ServiceNow {
 	
 	public RequestSpecBuilder globalRequestSpec() {
 		return new RequestSpecBuilder()
-				   .setBaseUri(config("service.now.base.uri"))
-				   .setContentType(ContentType.JSON)
+				   .setBaseUri(config("service.now.base.uri"))				  
 				   .setAccept(ContentType.JSON);
 	}
 	

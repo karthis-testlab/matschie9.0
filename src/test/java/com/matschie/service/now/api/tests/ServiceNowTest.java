@@ -4,10 +4,12 @@ import org.testng.annotations.Test;
 
 import com.matschie.service.now.pojos.IncidentRequestPayload;
 import com.matschie.service.now.services.IncidentService;
+import com.matschie.service.now.services.OAuthService;
 
 public class ServiceNowTest {
 	
 	IncidentService incident = new IncidentService();
+	OAuthService oauth = new OAuthService();
 	
 	@Test
 	public void userShouldAbleToFetchAllIncidentRecords() {		
@@ -26,7 +28,9 @@ public class ServiceNowTest {
 	public void userShouldAbleToFetchSingleIncidentRecord() {
 		incident.fetchIncidentRecord("46f1784ba9fe19810018aa27fbb23482");
 		incident.validateSuccessResponse();
-		incident.validateSysId("46f1784ba9fe19810018aa27fbb23482");		
+		incident.validateSysId("46f1784ba9fe19810018aa27fbb23482");	
+		oauth.createOAuthToken();
+		System.out.println(oauth.extractToken());
 	}
 	
 	@Test
