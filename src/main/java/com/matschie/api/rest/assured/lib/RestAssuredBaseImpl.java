@@ -7,7 +7,6 @@ import com.matschie.api.design.ApiClient;
 import com.matschie.api.design.ResponseAPI;
 
 import io.restassured.RestAssured;
-import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
@@ -17,11 +16,7 @@ public class RestAssuredBaseImpl implements ApiClient {
 		return RestAssured.given()
 				.spec(request)
 				.filter(new RestAssuredListener());
-	}
-	
-	public AuthenticationScheme basicAuth(String username, String password) {
-		return RestAssured.basic(username, password);
-	}
+	}	
 
 	@Override
 	public ResponseAPI get(RequestSpecification request) {		
@@ -43,7 +38,7 @@ public class RestAssuredBaseImpl implements ApiClient {
 	}
 	
 	@Override
-	public ResponseAPI post(RequestSpecification request, String endPoint, Map<String, String> formParams) {		
+	public ResponseAPI post(RequestSpecification request, Map<String, String> formParams) {		
 		return new RestAssuredResponseImpl(
 				   given(request)
 				   .contentType(ContentType.URLENC)

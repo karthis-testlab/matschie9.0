@@ -3,61 +3,136 @@ package com.matschie.api.rest.assured.lib;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.restassured.RestAssured.*;
+
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+
 public class RequestSpecBuilder {
 
 	private String baseUri;
 	private String basePath;
-	private String contentType;
+	private ContentType contentType;
+	private ContentType accept;
 	private Map<String, String> queryParams = new HashMap<String, String>();
 	private String queryParamKey;
 	private String queryParamValue;
+	private Map<String, String> headers = new HashMap<String, String>();
+	private String headerKey;
+	private String headerValue;
+	private String username;
+	private String password;
+	private RequestSpecification specification;
 
-	public String getBaseUri() {
-		return baseUri;
-	}
-
-	public void setBaseUri(String baseUri) {
+	public RequestSpecBuilder setBaseUri(String baseUri) {
 		this.baseUri = baseUri;
+		return this;
 	}
 
-	public String getBasePath() {
-		return basePath;
-	}
-
-	public void setBasePath(String basePath) {
+	public RequestSpecBuilder setBasePath(String basePath) {
 		this.basePath = basePath;
+		return this;
 	}
 
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
+	public RequestSpecBuilder setContentType(ContentType contentType) {
 		this.contentType = contentType;
+		return this;
+	}
+	
+	public RequestSpecBuilder setAccept(ContentType accept) {
+		this.accept = accept;
+		return this;
 	}
 
-	public Map<String, String> getQueryParams() {
-		return queryParams;
-	}
-
-	public void setQueryParams(Map<String, String> queryParams) {
+	public RequestSpecBuilder setQueryParams(Map<String, String> queryParams) {
 		this.queryParams = queryParams;
+		return this;
 	}
 
-	public String getQueryParamKey() {
-		return queryParamKey;
-	}
-
-	public void setQueryParamKey(String queryParamKey) {
+	public RequestSpecBuilder setQueryParamKey(String queryParamKey) {
 		this.queryParamKey = queryParamKey;
+		return this;
 	}
 
-	public String getQueryParamValue() {
-		return queryParamValue;
-	}
-
-	public void setQueryParamValue(String queryParamValue) {
+	public RequestSpecBuilder setQueryParamValue(String queryParamValue) {
 		this.queryParamValue = queryParamValue;
+		return this;
+	}
+
+	public RequestSpecBuilder setUsername(String username) {
+		this.username = username;
+		return this;
+	}
+
+	public RequestSpecBuilder setPassword(String password) {
+		this.password = password;
+		return this;
+	}	
+
+	public RequestSpecBuilder setSpecification(RequestSpecification specification) {
+		this.specification = specification;
+		return this;
+	}	
+
+	public void setHeaders(Map<String, String> headers) {
+		this.headers = headers;
+	}
+
+	public void setHeaderKey(String headerKey) {
+		this.headerKey = headerKey;
+	}
+
+	public void setHeaderValue(String headerValue) {
+		this.headerValue = headerValue;
+	}
+
+	public RequestSpecification build() {
+		
+		RequestSpecification requestSpecification = given();
+
+		if (baseUri != null) {
+			System.out.println(baseUri);
+			requestSpecification.baseUri(baseUri);
+		}
+
+		if (basePath != null) {
+			System.out.println(basePath);
+			requestSpecification.basePath(basePath);
+		}
+
+		if (contentType != null) {
+			requestSpecification.contentType(contentType);
+		}
+		
+		if (accept != null) {
+			requestSpecification.accept(accept);
+		}
+		
+		if (queryParamKey != null && queryParamValue != null) {			
+			requestSpecification.queryParam(queryParamKey, queryParamValue);
+		}
+		
+		if (username != null && password != null) {			
+			requestSpecification.auth().basic(username, password);
+		}
+
+		if (!queryParams.isEmpty()) {
+			requestSpecification.queryParams(queryParams);
+		}
+		
+		if (specification != null) {
+			requestSpecification.spec(specification);
+		}
+		
+		if (headerKey != null && headerValue != null) {			
+			requestSpecification.header(queryParamKey, queryParamValue);
+		}
+		
+		if (!headers.isEmpty()) {
+			requestSpecification.headers(headers);
+		}
+
+		return requestSpecification;
 	}
 
 }
