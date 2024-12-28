@@ -8,9 +8,12 @@ import com.matschie.api.design.ResponseAPI;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RestAssuredBaseImpl implements ApiClient {	
+	
+	private Response response;
 	
 	private RequestSpecification given(RequestSpecification request) {
 		return RestAssured.given()
@@ -24,17 +27,17 @@ public class RestAssuredBaseImpl implements ApiClient {
 	}
 	
 	@Override
-	public ResponseAPI get(RequestSpecification request, String endPoint) {
-		return new RestAssuredResponseImpl(given(request).get(endPoint));
+	public ResponseAPI get(RequestSpecification request, String endPoint) {		
+		response = given(request).get(endPoint);		
+		return new RestAssuredResponseImpl(response);		
 	}
 
 	@Override
 	public ResponseAPI post(RequestSpecification request, String endPoint, Object body) {
-		return new RestAssuredResponseImpl(
-				   given(request)
-				   .contentType(ContentType.JSON)				   
+		response = given(request)
 				   .body(new Gson().toJson(body))
-				   .post());
+				   .post();
+		return new RestAssuredResponseImpl(response);
 	}
 	
 	@Override
