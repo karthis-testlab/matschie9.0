@@ -36,7 +36,7 @@ public class RestAssuredBaseImpl implements ApiClient {
 	public ResponseAPI post(RequestSpecification request, String endPoint, Object body) {
 		response = given(request)
 				   .body(new Gson().toJson(body))
-				   .post();
+				   .post(endPoint);
 		return new RestAssuredResponseImpl(response);
 	}
 	
@@ -50,7 +50,7 @@ public class RestAssuredBaseImpl implements ApiClient {
 	}
 
 	@Override
-	public ResponseAPI put(RequestSpecification request, Object body) {
+	public ResponseAPI put(RequestSpecification request, String endPoint, Object body) {
 		return new RestAssuredResponseImpl(
 				   given(request)
 				   .contentType(ContentType.JSON)

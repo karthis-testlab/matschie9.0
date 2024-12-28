@@ -11,6 +11,7 @@ import com.matschie.api.rest.assured.lib.RestAssuredBaseImpl;
 import static com.matschie.general.utils.PropertiesHandlers.*;
 import com.matschie.service.now.pojos.IncidentRequestPayload;
 
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 public class IncidentService extends ServiceNow {
@@ -24,6 +25,7 @@ public class IncidentService extends ServiceNow {
 	private RequestSpecification serviceRequestSpec() {		
 		return globalRequestSpec()
 				.setBasePath(BASE_PATH)
+				.setContentType(ContentType.JSON)
 				.setUsername(config("sevice.now.username"))
 		        .setPassword(secret("service.now.password"))
 				.build();
