@@ -91,43 +91,41 @@ public class RequestSpecBuilder {
 		RequestSpecification requestSpecification = given();
 
 		if (baseUri != null) {
-			System.out.println(baseUri);
 			requestSpecification.baseUri(baseUri);
 		}
 
 		if (basePath != null) {
-			System.out.println(basePath);
 			requestSpecification.basePath(basePath);
 		}
 
 		if (contentType != null) {
 			requestSpecification.contentType(contentType);
 		}
-		
+
 		if (accept != null) {
 			requestSpecification.accept(accept);
 		}
-		
-		if (queryParamKey != null && queryParamValue != null) {			
+
+		if (queryParamKey != null && queryParamValue != null) {
 			requestSpecification.queryParam(queryParamKey, queryParamValue);
 		}
-		
-		if (username != null && password != null) {			
+
+		if (username != null && password != null) {
 			requestSpecification.auth().basic(username, password);
 		}
 
 		if (!queryParams.isEmpty()) {
 			requestSpecification.queryParams(queryParams);
 		}
-		
+
 		if (specification != null) {
 			requestSpecification.spec(specification);
 		}
-		
-		if (headerKey != null && headerValue != null) {			
+
+		if (headerKey != null && headerValue != null) {
 			requestSpecification.header(queryParamKey, queryParamValue);
 		}
-		
+
 		if (!headers.isEmpty()) {
 			requestSpecification.headers(headers);
 		}
