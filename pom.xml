@@ -13,6 +13,8 @@
 		<apache.poi.version>5.2.4</apache.poi.version>
 		<apache.poi.ooxml.version>5.2.4</apache.poi.ooxml.version>
 		<opencsv.version>5.9</opencsv.version>
+		<cucumber.jvm.version>7.20.1</cucumber.jvm.version>
+		<cucumber.testng.version>7.20.1</cucumber.testng.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -70,6 +72,16 @@
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>${opencsv.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.jvm.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.testng.version}</version>
 		</dependency>
 	</dependencies>
 </project>

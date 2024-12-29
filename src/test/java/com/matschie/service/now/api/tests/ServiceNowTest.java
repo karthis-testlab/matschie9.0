@@ -2,6 +2,8 @@ package com.matschie.service.now.api.tests;
 
 import org.testng.annotations.Test;
 
+import com.matschie.api.rest.assured.lib.RequestSpecBuilder;
+import com.matschie.general.utils.PropertiesHandlers;
 import com.matschie.service.now.pojos.IncidentRequestPayload;
 import com.matschie.service.now.services.IncidentService;
 import com.matschie.service.now.services.OAuthService;
@@ -29,8 +31,6 @@ public class ServiceNowTest {
 		incident.fetchIncidentRecord("46f1784ba9fe19810018aa27fbb23482");
 		incident.validateSuccessResponse();
 		incident.validateSysId("46f1784ba9fe19810018aa27fbb23482");	
-		oauth.createOAuthToken();
-		System.out.println(oauth.extractToken());
 	}
 	
 	@Test
@@ -42,6 +42,21 @@ public class ServiceNowTest {
 		payload.setState(1);
 		payload.setUrgency(1);
 		incident.createIncidentRecord(payload);
+	}
+	
+	@Test
+	public void userShouldAbleToUpdateExistingIncidentRecord() {
+		IncidentRequestPayload payload = new IncidentRequestPayload();
+		payload.setDescription("Update Description");
+		payload.setShort_description("Update Short Description");
+		incident.updateIncidentRecord(payload, "46f1784ba9fe19810018aa27fbb23482");
+		incident.validateSuccessResponse();
+	}
+	
+	@Test
+	public void userShouldAbleSeeErrorMassageforNotFoundIncidentRecord() {
+		incident.fetchIncidentRecord("46f1784ba9fe19810018aa27fbb234827");
+		incident.validateNotFoundResponse();
 	}
 
 }

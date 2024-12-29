@@ -55,7 +55,7 @@ public class RestAssuredBaseImpl implements ApiClient {
 				   given(request)
 				   .contentType(ContentType.JSON)
 				   .body(new Gson().toJson(body))
-				   .put());
+				   .put(endPoint));
 	}
 
 	@Override

@@ -9,6 +9,12 @@ public class IncidentRequestPayload {
 	private int urgency;
 	private String category;
 	
+	public IncidentRequestPayload() {
+		setActive(true);
+		setState(1);
+		setUrgency(1);
+	}
+	
 	public String getDescription() {
 		return description;
 	}

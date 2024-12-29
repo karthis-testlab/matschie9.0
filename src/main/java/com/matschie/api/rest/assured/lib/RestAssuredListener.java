@@ -28,6 +28,8 @@ public class RestAssuredListener implements Filter {
 				));
 		LOGGER.info(String.join("\n", 
 				"============ Response Log ============",
+			    "Response Status Code: "+response.getStatusCode(),
+			    "Response Status Line: "+response.getStatusLine(),
 				"Response Body: ",
 				response.getBody().asPrettyString(),				
 				"Headers: ",

@@ -15,11 +15,18 @@ public class OAuthService extends ServiceNow {
 	
 	private ResponseAPI response;
 	private RestAssuredBaseImpl restAssured = new RestAssuredBaseImpl();
+	private RequestSpecification requestSpecification;
 	
-	private RequestSpecification serviceRequestSpec() {		
-		return globalRequestSpec()
-				.setBasePath("/oauth_token.do")
-				.build();
+	public void setRequestSpec(RequestSpecification requestSpecification) {
+		this.requestSpecification = requestSpecification;		
+	}
+	
+	private RequestSpecification getRequestSpec() {
+		if (requestSpecification != null) {
+			return requestSpecification;
+		} else {
+			return globalRequestSpec();
+		}
 	}
 	
 	public void createOAuthToken() {
@@ -29,7 +36,7 @@ public class OAuthService extends ServiceNow {
 		forms.put("client_secret", secret("service.now.client.secret"));
 		forms.put("username", config("sevice.now.username"));
 		forms.put("password", secret("service.now.password"));
-		response = restAssured.post(serviceRequestSpec(), forms);
+		response = restAssured.post(getRequestSpec(), forms);
 	}
 	
 	public String extractToken() {
