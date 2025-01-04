@@ -31,10 +31,19 @@ public class RestAssuredBaseImpl implements ApiClient {
 		response = given(request).get(endPoint);		
 		return new RestAssuredResponseImpl(response);		
 	}
+	
+	@Override
+	public ResponseAPI post(RequestSpecification request, String endPoint) {
+		response = given(request)
+				   .contentType(ContentType.JSON)				   
+				   .post(endPoint);
+		return new RestAssuredResponseImpl(response);
+	}
 
 	@Override
 	public ResponseAPI post(RequestSpecification request, String endPoint, Object body) {
 		response = given(request)
+				   .contentType(ContentType.JSON)
 				   .body(new Gson().toJson(body))
 				   .post(endPoint);
 		return new RestAssuredResponseImpl(response);

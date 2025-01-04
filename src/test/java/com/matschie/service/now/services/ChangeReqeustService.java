@@ -3,18 +3,20 @@ package com.matschie.service.now.services;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 
-import com.matschie.api.design.ResponseAPI;
-import com.matschie.api.rest.assured.lib.RestAssuredBaseImpl;
-
-public class ChangeReqeustService extends ServiceNow {
+public class ChangeReqeustService extends ServiceNow {	
 	
 	private static final String TABLE_NAME = "change_request";
 	
-	private RestAssuredBaseImpl restAssured = new RestAssuredBaseImpl();
-	private ResponseAPI response;
+	public ChangeReqeustService() {
+		requestBuilder = globalRequest();		
+	}
 	
 	public void fetchChangeRequestRecords() {
-		response = restAssured.get(globalRequestSpec(), TABLE_NAME);
+		response = restAssured.get(requestBuilder.build(), TABLE_NAME);
+	}
+	
+	public void fetchChangeRequestRecord(String sysId) {
+		response = restAssured.get(requestBuilder.build(), TABLE_NAME+"/"+sysId);
 	}
 	
 	public void validateSuccessResponse() {

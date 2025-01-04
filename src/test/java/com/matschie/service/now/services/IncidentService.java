@@ -5,55 +5,44 @@ import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.matschie.api.design.ResponseAPI;
-import com.matschie.api.rest.assured.lib.RestAssuredBaseImpl;
-
 import com.matschie.service.now.pojos.IncidentRequestPayload;
-
-import io.restassured.specification.RequestSpecification;
 
 public class IncidentService extends ServiceNow {
 	
-	private ResponseAPI response;
-	private RestAssuredBaseImpl restAssured = new RestAssuredBaseImpl();
-	private RequestSpecification requestSpecification;	
-		
+	// SOM - Service Object Modal
+	
 	private static final String TABLE_NAME = "incident";	
 	
-	public void setRequestSpec(RequestSpecification requestSpecification) {
-		this.requestSpecification = requestSpecification;		
-	}
-	
-	private RequestSpecification getRequestSpec() {
-		if (requestSpecification != null) {
-			return requestSpecification;
-		} else {
-			return globalRequestSpec();
-		}
-	}
+	public IncidentService() {
+		requestBuilder = globalRequest();		
+	}	
 	
 	public void fetchIncidentRecords() {
-		response = restAssured.get(getRequestSpec(), TABLE_NAME);
+		response = restAssured.get(requestBuilder.build(), TABLE_NAME);
 	}
 	
 	public void fetchIncidentRecord(String sysId) {
-		response = restAssured.get(getRequestSpec(), TABLE_NAME+"/"+sysId);
+		response = restAssured.get(requestBuilder.build(), TABLE_NAME+"/"+sysId);
+	}
+	
+	public void createIncidentRecord() {
+		response = restAssured.post(requestBuilder.build(), TABLE_NAME);
 	}
 	
 	public void createIncidentRecord(IncidentRequestPayload payload) {
-		response = restAssured.post(getRequestSpec(), TABLE_NAME, payload);
+		response = restAssured.post(requestBuilder.build(), TABLE_NAME, payload);
 	}
 	
 	public void updateIncidentRecord(IncidentRequestPayload payload, String sysId) {
-		response = restAssured.put(getRequestSpec(),  TABLE_NAME+"/"+sysId, payload);
+		response = restAssured.put(requestBuilder.build(),  TABLE_NAME+"/"+sysId, payload);
 	}
 	
 	public void fetchOnlyHardwareCategoryIncidentRecords() {		
-		response = restAssured.get(getRequestSpec().queryParam("sysparm_query", "category=hardware"), TABLE_NAME);
+		response = restAssured.get(requestBuilder.build().queryParam("sysparm_query", "category=hardware"), TABLE_NAME);
 	}
 	
 	public void deleteIncidentRecord(String sysId) {
-		response = restAssured.delete(getRequestSpec(), TABLE_NAME+"/"+sysId);
+		response = restAssured.delete(requestBuilder.build(), TABLE_NAME+"/"+sysId);
 	}
 	
 	public void validateSuccessResponse() {		

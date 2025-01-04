@@ -4,7 +4,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-		          features = {"src/test/java/com/matschie/service/now/features/IncidentService.feature:25"},
+		          features = {"src/test/java/com/matschie/service/now/features/IncidentService.feature:6"},
 		          glue = {"com.matschie.service.now.steps"},
 		          dryRun = false,
 		          plugin = {

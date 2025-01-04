@@ -1,23 +1,26 @@
 package com.matschie.service.now.services;
 
+import com.matschie.api.design.ResponseAPI;
 import com.matschie.api.rest.assured.lib.RequestSpecBuilder;
+import com.matschie.api.rest.assured.lib.RestAssuredBaseImpl;
 
 import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 
 import static com.matschie.general.utils.PropertiesHandlers.*;
 
-public class ServiceNow {
+public class ServiceNow {	
 	
-	public RequestSpecification globalRequestSpec() {
+	protected ResponseAPI response;
+	protected RestAssuredBaseImpl restAssured = new RestAssuredBaseImpl();	
+	protected RequestSpecBuilder requestBuilder;	
+	
+	protected RequestSpecBuilder globalRequest() {
 		return new RequestSpecBuilder()
-				   .setBaseUri(config("service.now.base.uri"))		
+				   .setBaseUri(config("service.now.base.uri"))	
 				   .setBasePath(config("service.now.base.path"))
-				   .setContentType(ContentType.JSON)
 				   .setUsername(config("sevice.now.username"))
 			       .setPassword(secret("service.now.password"))
-				   .setAccept(ContentType.JSON)
-				   .build();
-	}
+				   .setAccept(ContentType.JSON);
+	}	
 	
 }

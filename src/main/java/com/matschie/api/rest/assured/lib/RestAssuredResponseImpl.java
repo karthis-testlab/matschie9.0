@@ -1,6 +1,5 @@
 package com.matschie.api.rest.assured.lib;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +25,6 @@ public class RestAssuredResponseImpl implements ResponseAPI {
 	@Override
 	public String getStatusMessage() {		
 		String[] strings = response.getStatusLine().split(" ", 3);
-		System.out.println(Arrays.toString(strings));
 		return strings[strings.length - 1];
 	}
 
@@ -51,7 +49,6 @@ public class RestAssuredResponseImpl implements ResponseAPI {
 
 	@Override
 	public String getContentType() {
-		System.out.println(response.getContentType());
 		String[] values = response.getContentType().split(";");
 		return values[0];
 	}	

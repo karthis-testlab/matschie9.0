@@ -2,13 +2,11 @@ package com.matschie.service.now.api.tests;
 
 import org.testng.annotations.Test;
 
-import com.matschie.api.rest.assured.lib.RequestSpecBuilder;
-import com.matschie.general.utils.PropertiesHandlers;
 import com.matschie.service.now.pojos.IncidentRequestPayload;
 import com.matschie.service.now.services.IncidentService;
 import com.matschie.service.now.services.OAuthService;
 
-public class ServiceNowTest {
+public class IncidentServiceTest {
 	
 	IncidentService incident = new IncidentService();
 	OAuthService oauth = new OAuthService();
@@ -57,6 +55,11 @@ public class ServiceNowTest {
 	public void userShouldAbleSeeErrorMassageforNotFoundIncidentRecord() {
 		incident.fetchIncidentRecord("46f1784ba9fe19810018aa27fbb234827");
 		incident.validateNotFoundResponse();
+	}
+	
+	@Test
+	public void userShouldAbleToCreateOAuthToken() {		
+		oauth.createOAuthToken();
 	}
 
 }
