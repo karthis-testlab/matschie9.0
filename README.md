@@ -9,3 +9,6 @@ service.now.client.secret=your servicenow oauth client secret
 
 # JIRA API Secret Text
 jira.api.token=your jira api token
+
+# rest-full booker api secret info
+booker.password=booker api password
