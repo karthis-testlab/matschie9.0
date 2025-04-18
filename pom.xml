@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.testleaf.matschie.6.0</groupId>
-  <artifactId>matschie6.0</artifactId>
+  <groupId>com.testleaf.matschie.7.0</groupId>
+  <artifactId>matschie7.0</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<rest.assured.version>5.5.0</rest.assured.version>
-		<testng.version>7.10.2</testng.version>
+		<testng.version>7.11.0</testng.version>
 		<json.version>20210307</json.version>
 		<gson.version>2.11.0</gson.version>
 		<allure.report.version>2.24.0</allure.report.version>
@@ -13,8 +13,8 @@
 		<apache.poi.version>5.2.4</apache.poi.version>
 		<apache.poi.ooxml.version>5.2.4</apache.poi.ooxml.version>
 		<opencsv.version>5.9</opencsv.version>
-		<cucumber.jvm.version>7.20.1</cucumber.jvm.version>
-		<cucumber.testng.version>7.20.1</cucumber.testng.version>
+		<cucumber.jvm.version>6.11.0</cucumber.jvm.version>
+		<cucumber.testng.version>6.11.0</cucumber.testng.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -47,6 +47,11 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${gson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-cucumber6-jvm</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.qameta.allure</groupId>

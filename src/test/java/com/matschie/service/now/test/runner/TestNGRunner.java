@@ -9,7 +9,8 @@ import io.cucumber.testng.CucumberOptions;
 		          dryRun = false,
 		          plugin = {
 		        		    "pretty",
-		        		    "html:reports-html/cucumber/report.html"
+		        		    "html:reports-html/cucumber/report.html",
+		        		    "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
 		        		   }
 		         )
 public class TestNGRunner extends AbstractTestNGCucumberTests {
