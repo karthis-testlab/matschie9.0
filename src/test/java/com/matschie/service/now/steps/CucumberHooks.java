@@ -8,6 +8,7 @@ import io.cucumber.java.Scenario;
 import io.restassured.response.Response;
 
 import static com.matschie.general.utils.FileHandlers.*;
+import static com.matschie.general.utils.PropertiesHandlers.*;
 
 import com.matschie.jira.services.IssueAttachementService;
 import com.matschie.jira.services.IssuesService;
@@ -32,7 +33,7 @@ public class CucumberHooks {
 			Response response = new IssuesService().createBug("FAILED - "+scenario.getName());
 			
 			scenario.log("Create Bug in the SB Borad. The issue reference link: "+
-			             response.jsonPath().getString("self"));			
+			             config("jira.web.url")+response.jsonPath().getString("self"));			
 			
 			createNewTxtFile(scenario.getLine()+"-response", context.getContext("response"));
 			createNewTxtFile(scenario.getLine()+"-error", context.getContext("error"));
