@@ -30,7 +30,7 @@ public class RestAssuredResponseImpl implements ResponseAPI {
 
 	@Override
 	public String getBody() {		
-		return response.getBody().asString();
+		return response.getBody().asPrettyString();
 	}
 
 	@Override

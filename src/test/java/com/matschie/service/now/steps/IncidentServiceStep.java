@@ -1,5 +1,7 @@
 package com.matschie.service.now.steps;
 
+import java.util.Arrays;
+
 import com.matschie.service.now.pojos.IncidentRequestPayload;
 import com.matschie.service.now.services.IncidentService;
 
@@ -11,6 +13,11 @@ public class IncidentServiceStep {
 	
 	private IncidentService incident;
 	private IncidentRequestPayload requestPaylod;
+	private TestContext context;
+	
+	public IncidentServiceStep(TestContext context) {
+		this.context = context;
+	}
 	
 	@Given("user should create the relevant object for the incident call")
 	public void user_should_create_the_relevant_object_for_the_incident_call() {
@@ -29,7 +36,14 @@ public class IncidentServiceStep {
 
 	@Then("user should see the success message and response body")
 	public void user_should_see_the_success_message_and_response_body() {
-		incident.validateSuccessResponse();
+		try {
+			incident.validateSuccessResponse();
+		} catch (AssertionError e) {			
+			context.setContext("response", incident.responseAsString());
+			context.setContext("error", e.getLocalizedMessage());
+			context.setContext("trace", Arrays.toString(e.getStackTrace()).replace( ',', '\n' ));
+			throw new RuntimeException(e.getLocalizedMessage());
+		}
 	}
 	
 	@When("/^user create the new record with following (.*), (.*) values as input$/")
@@ -46,7 +60,14 @@ public class IncidentServiceStep {
 	
 	@Then("user should see the success code, message and content type")
 	public void user_should_see_the_success_code_message_and_content_type() {
-	    incident.validateSuccessResponse();
+	    try {
+			incident.validateSuccessResponse();
+		} catch (AssertionError e) {			
+			context.setContext("response", incident.responseAsString());
+			context.setContext("error", e.getLocalizedMessage());
+			context.setContext("trace", Arrays.toString(e.getStackTrace()).replace( ',', '\n' ));
+			throw new RuntimeException(e.getLocalizedMessage());
+		}
 	}
 	
 	@Then("user should able to see the give sysid {string} value in the response body")

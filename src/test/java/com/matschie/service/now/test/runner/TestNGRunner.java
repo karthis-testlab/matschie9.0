@@ -11,7 +11,8 @@ import io.cucumber.testng.CucumberOptions;
 		        		    "pretty",
 		        		    "html:reports-html/cucumber/report.html",
 		        		    "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
-		        		   }
+		        		   },
+		          publish = true
 		         )
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 

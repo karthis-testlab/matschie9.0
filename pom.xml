@@ -15,6 +15,7 @@
 		<opencsv.version>5.9</opencsv.version>
 		<cucumber.jvm.version>6.11.0</cucumber.jvm.version>
 		<cucumber.testng.version>6.11.0</cucumber.testng.version>
+		<cucumber.picocontainer.version>6.11.0</cucumber.picocontainer.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -59,6 +60,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-rest-assured</artifactId>			
+		</dependency>
+		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons.io.version}</version>
@@ -87,6 +92,11 @@
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber.testng.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.picocontainer.version}</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -7,3 +7,4 @@ allure-results/
 src/test/resources/secret.properties
 reports-html/
 allure-report/
+test-evidences/

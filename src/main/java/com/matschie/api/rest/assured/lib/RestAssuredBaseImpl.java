@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.matschie.api.design.ApiClient;
 import com.matschie.api.design.ResponseAPI;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -18,7 +19,7 @@ public class RestAssuredBaseImpl implements ApiClient {
 	private RequestSpecification given(RequestSpecification request) {
 		return RestAssured.given()
 				.spec(request)
-				.filter(new RestAssuredListener());
+				.filters(new RestAssuredListener(), new AllureRestAssured());
 	}	
 
 	@Override

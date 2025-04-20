@@ -46,7 +46,7 @@ public class IncidentService extends ServiceNow {
 	}
 	
 	public void validateSuccessResponse() {		
-		MatcherAssert.assertThat(response.getStatusCode(), Matchers.equalTo(200));
+		MatcherAssert.assertThat(response.getStatusCode(), Matchers.equalTo(201));
 		MatcherAssert.assertThat(response.getStatusMessage(), Matchers.equalToIgnoringCase("OK"));
 		MatcherAssert.assertThat(response.getContentType(), Matchers.equalTo("application/json"));
 	}
@@ -66,6 +66,10 @@ public class IncidentService extends ServiceNow {
 		MatcherAssert.assertThat(response.getStatusCode(), Matchers.equalTo(404));
 		MatcherAssert.assertThat(response.getStatusMessage(), Matchers.equalToIgnoringCase("Not Found"));
 		MatcherAssert.assertThat(response.getContentType(), Matchers.equalTo("application/json"));
+	}
+	
+	public String responseAsString() {
+		return response.getBody();
 	}
 	
 	public void validateCategories(String expected) {
