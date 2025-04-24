@@ -21,3 +21,32 @@ booker.password=booker api password
 - Step 5: To generate the html report **"allure generate allure-results -o reports/allure-html-report --clean"**
 - Step 6: In-order to view the allure html report we need to type **"allure serve"**
 - Step 7: Add below package name in the @CucumberOptions plugin porperty **"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"**
+
+```
+<!-- Define the version of Allure you want to use via the allure.version property -->
+<properties>
+    <allure.version>2.24.0</allure.version>
+</properties>
+
+<!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-bom</artifactId>
+            <version>${allure.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<!-- Add necessary Allure dependencies to dependencies section -->
+<dependencies>
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-testng</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+```
