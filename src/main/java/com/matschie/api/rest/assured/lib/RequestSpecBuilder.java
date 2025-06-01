@@ -74,16 +74,19 @@ public class RequestSpecBuilder {
 		return this;
 	}	
 
-	public void setHeaders(Map<String, String> headers) {
+	public RequestSpecBuilder setHeaders(Map<String, String> headers) {
 		this.headers = headers;
+		return this;
 	}
 
-	public void setHeaderKey(String headerKey) {
+	public RequestSpecBuilder setHeaderKey(String headerKey) {		
 		this.headerKey = headerKey;
+		return this;
 	}
 
-	public void setHeaderValue(String headerValue) {
+	public RequestSpecBuilder setHeaderValue(String headerValue) {
 		this.headerValue = headerValue;
+		return this;
 	}
 
 	public RequestSpecification build() {
@@ -123,7 +126,7 @@ public class RequestSpecBuilder {
 		}
 
 		if (headerKey != null && headerValue != null) {
-			requestSpecification.header(queryParamKey, queryParamValue);
+			requestSpecification.header(headerKey, headerValue);
 		}
 
 		if (!headers.isEmpty()) {
