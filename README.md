@@ -11,7 +11,7 @@ service.now.client.secret=**your-servicenow-oauth-client-secret**
 jira.api.token=**your-jira-api-token**
 
 # rest-full booker api secret info
-booker.password=**booker api password**
+booker.password=**booker-api-password**
 
 # Allure Report Integration
 - Step 1: Add depenceies for TestNG and Cucumber in pom.xml
